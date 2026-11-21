@@ -1,9 +1,20 @@
-function App() {
+import { Route, Routes } from 'react-router-dom'
+import PlayerLayout from './layouts/PlayerLayout'
+import AdminLayout from './layouts/AdminLayout'
+import Home from './pages/player/Home'
+import Courts from './pages/player/Courts'
+import Dashboard from './pages/admin/Dashboard'
+
+export default function App() {
   return (
-    <div className="min-h-screen bg-emerald-600 flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-white">PCMS is running</h1>
-    </div>
+    <Routes>
+      <Route element={<PlayerLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/courts" element={<Courts />} />
+      </Route>
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<Dashboard />} />
+      </Route>
+    </Routes>
   )
 }
-
-export default App
